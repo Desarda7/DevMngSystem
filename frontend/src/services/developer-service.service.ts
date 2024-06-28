@@ -60,4 +60,12 @@ export class DeveloperServiceService {
   getDevelopers(): Observable<Developer[]> {
     return of(this.developers);
   }
+
+  deleteDeveloper(id: number): Observable<void> {
+    const index = this.developers.findIndex((dev) => dev.id === id);
+    if (index !== -1) {
+      this.developers.splice(index, 1);
+    }
+    return of(void 0);
+  }
 }

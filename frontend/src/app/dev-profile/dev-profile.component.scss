@@ -3,11 +3,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Use viewport height for full page height */
+  height: 100vh;
 }
 
 .dev-profile-form {
-  max-width: 600px; /* Adjust max-width as needed */
+  max-width: 600px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -15,22 +15,22 @@
 }
 
 .dev-profile-form h2 {
-  font-size: 1.5em; /* Adjust form title font size */
+  font-size: 1.5em;
   margin-bottom: 20px;
 }
 
 .mat-form-field {
   width: 100%;
-  margin-bottom: 20px; /* Spacing between input fields */
+  margin-bottom: 20px;
 }
 
 .mat-checkbox {
-  margin-bottom: 10px; /* Optional: Spacing between checkboxes */
+  margin-bottom: 10px;
 }
 
 button[type="submit"] {
   width: 100%;
-  font-size: 1.2em; /* Adjust button text size */
-  padding: 15px; /* Adjust button padding */
-  margin-top: 20px; /* Spacing above the submit button */
+  font-size: 1.2em;
+  padding: 15px;
+  margin-top: 20px;
 }

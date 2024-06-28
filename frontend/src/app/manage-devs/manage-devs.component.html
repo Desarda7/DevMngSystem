@@ -50,7 +50,12 @@
         >
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="warn" aria-label="Delete">
+        <button
+          mat-icon-button
+          color="warn"
+          aria-label="Delete"
+          (click)="deleteDeveloper(developer)"
+        >
           <mat-icon>delete</mat-icon>
         </button>
       </td>

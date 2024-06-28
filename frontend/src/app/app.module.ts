@@ -20,6 +20,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { EditDeveloperDialogComponent } from './edit-developer-dialog/edit-developer-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CreateProjectComponent } from './create-project/create-project.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     DevProfileComponent,
     AdminDashboardComponent,
     EditDeveloperDialogComponent,
+    CreateProjectComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +51,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatPaginatorModule,
     MatTableModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

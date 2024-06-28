@@ -1,0 +1,75 @@
+<div class="container">
+  <h2>Create Project</h2>
+  <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Start Time</mat-label>
+      <input
+        matInput
+        [matDatepicker]="startTimePicker"
+        formControlName="startTime"
+        required
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="startTimePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #startTimePicker></mat-datepicker>
+      <mat-error *ngIf="projectForm.get('startTime')?.hasError('required')"
+        >Start time is required</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>End Time</mat-label>
+      <input
+        matInput
+        [matDatepicker]="endTimePicker"
+        formControlName="endTime"
+        required
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="endTimePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #endTimePicker></mat-datepicker>
+      <mat-error *ngIf="projectForm.get('endTime')?.hasError('required')"
+        >End time is required</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Industry</mat-label>
+      <mat-select formControlName="industry" multiple>
+        <mat-option *ngFor="let ind of industries" [value]="ind">{{
+          ind
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Company Name</mat-label>
+      <input
+        matInput
+        formControlName="companyName"
+        placeholder="Company Name"
+        required
+      />
+      <mat-error *ngIf="projectForm.get('companyName')?.hasError('required')"
+        >Company name is required</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Developer</mat-label>
+      <input
+        matInput
+        formControlName="developer"
+        placeholder="Developer"
+      /> </mat-form-field
+    ><br />
+
+    <button mat-raised-button color="primary" type="submit">
+      Create Project
+    </button>
+  </form>
+</div>

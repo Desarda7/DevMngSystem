@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Developer } from 'src/models/developer.model';
 import { DeveloperServiceService } from 'src/services/developer-service.service';
 import { EditDeveloperDialogComponent } from '../edit-developer-dialog/edit-developer-dialog.component';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-manage-devs',
@@ -92,8 +93,28 @@ export class ManageDevsComponent {
 
     dialogRef.afterClosed().subscribe((updatedDeveloper) => {
       if (updatedDeveloper) {
-        // Update developer in your data source or call service method to update
         console.log('Updated developer:', updatedDeveloper);
+      }
+    });
+  }
+
+  deleteDeveloper(developer: Developer): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '400px',
+      data: {
+        title: 'Confirm Delete',
+        message: `Are you sure you want to delete ${developer.emer} ${developer.mbiemer}?`,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.developerService.deleteDeveloper(developer.id).subscribe(() => {
+          this.dataSource.data = this.dataSource.data.filter(
+            (dev) => dev.id !== developer.id
+          );
+          this.dataSource._updateChangeSubscription(); // Refresh dataSource
+        });
       }
     });
   }

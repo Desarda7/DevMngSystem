@@ -1,9 +1,14 @@
-<div class="dashboard">
-  <h2>Admin Dashboard</h2>
-  <button mat-raised-button color="primary" (click)="openManageDevelopers()">
-    Manage Developers
-  </button>
-  <button mat-raised-button color="accent" (click)="openAddDeveloper()">
-    Add Developer
-  </button>
+<div class="admin-dashboard-container">
+  <h2 class="text-size">Admin Dashboard</h2>
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="openManageDevelopers()">
+      Manage Developers
+    </button>
+    <button mat-raised-button color="accent" (click)="openAddDeveloper()">
+      Add Developer
+    </button>
+    <button mat-raised-button color="warn" routerLink="/create-project">
+      Create Project
+    </button>
+  </div>
 </div>

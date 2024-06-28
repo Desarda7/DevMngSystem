@@ -1,0 +1,36 @@
+/* dev-profile.component.css */
+.dev-profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Use viewport height for full page height */
+}
+
+.dev-profile-form {
+  max-width: 600px; /* Adjust max-width as needed */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dev-profile-form h2 {
+  font-size: 1.5em; /* Adjust form title font size */
+  margin-bottom: 20px;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 20px; /* Spacing between input fields */
+}
+
+.mat-checkbox {
+  margin-bottom: 10px; /* Optional: Spacing between checkboxes */
+}
+
+button[type="submit"] {
+  width: 100%;
+  font-size: 1.2em; /* Adjust button text size */
+  padding: 15px; /* Adjust button padding */
+  margin-top: 20px; /* Spacing above the submit button */
+}

@@ -6,19 +6,47 @@ import { AppComponent } from './app.component';
 import { ManageDevsComponent } from './manage-devs/manage-devs.component';
 import { DevProfileComponent } from './dev-profile/dev-profile.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { EditDeveloperDialogComponent } from './edit-developer-dialog/edit-developer-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     ManageDevsComponent,
     DevProfileComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    EditDeveloperDialogComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    FormsModule,
+    MatSelectModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatDialogModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

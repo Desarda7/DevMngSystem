@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Edit Developer</h2>
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Emer</mat-label>
+      <input matInput formControlName="emer" required />
+      <mat-error *ngIf="editForm.get('emer')?.hasError('required')"
+        >Emer is required</mat-error
+      >
+    </mat-form-field>
+
+    <!-- Repeat for other fields (mbiemer, email, experienceLevel, skills) -->
+
+    <mat-checkbox formControlName="frontend">Frontend</mat-checkbox>
+    <mat-checkbox formControlName="backend">Backend</mat-checkbox>
+    <mat-checkbox formControlName="database">Database</mat-checkbox>
+    <mat-checkbox formControlName="devops">DevOps</mat-checkbox>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="dialogRef.close()">Cancel</button>
+    <button
+      mat-button
+      color="primary"
+      type="submit"
+      [disabled]="editForm.invalid"
+    >
+      Save
+    </button>
+  </mat-dialog-actions>
+</form>

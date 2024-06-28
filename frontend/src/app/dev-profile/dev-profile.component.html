@@ -1,1 +1,69 @@
-<p>dev-profile works!</p>
+<div class="dev-profile-container">
+  <div class="dev-profile-form">
+    <h2>Add a New Developer</h2>
+    <div>
+      <label for="photo">Upload Photo</label>
+      <input id="photo" type="file" (change)="onFileChange($event)" required />
+      <div *ngIf="devProfileForm.get('photo')?.hasError('required')">
+        Photo is required
+      </div>
+    </div>
+    <form [formGroup]="devProfileForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Emer</mat-label>
+        <input matInput formControlName="emer" placeholder="Emer" required />
+        <mat-error *ngIf="devProfileForm.get('emer')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Mbiemer</mat-label>
+        <input
+          matInput
+          formControlName="mbiemer"
+          placeholder="Mbiemer"
+          required
+        />
+        <mat-error *ngIf="devProfileForm.get('mbiemer')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Email" required />
+        <mat-error *ngIf="devProfileForm.get('email')?.hasError('required')">
+          This field is required
+        </mat-error>
+        <mat-error *ngIf="devProfileForm.get('email')?.hasError('email')">
+          Please enter a valid email address
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Experience Level</mat-label>
+        <mat-select formControlName="experienceLevel" required>
+          <mat-option value="junior">Junior</mat-option>
+          <mat-option value="intermediate">Intermediate</mat-option>
+          <mat-option value="senior">Senior</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="devProfileForm.get('experienceLevel')?.hasError('required')"
+        >
+          This field is required
+        </mat-error> </mat-form-field
+      ><br />
+
+      <mat-label>Select skills</mat-label>
+      <div class="d-grid">
+        <mat-checkbox formControlName="frontend">Frontend</mat-checkbox>
+        <mat-checkbox formControlName="backend">Backend</mat-checkbox>
+        <mat-checkbox formControlName="database">Database</mat-checkbox>
+        <mat-checkbox formControlName="devops">DevOps</mat-checkbox>
+      </div>
+
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </form>
+  </div>
+</div>

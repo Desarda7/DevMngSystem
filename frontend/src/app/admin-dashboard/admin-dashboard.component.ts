@@ -1,10 +1,19 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.scss']
+  styleUrls: ['./admin-dashboard.component.scss'],
 })
 export class AdminDashboardComponent {
+  constructor(private router: Router) {}
 
+  openManageDevelopers() {
+    this.router.navigate(['/manage-devs']);
+  }
+
+  openAddDeveloper() {
+    this.router.navigate(['/add-developer']);
+  }
 }

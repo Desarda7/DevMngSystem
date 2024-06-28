@@ -1,4 +1,7 @@
 <div class="container">
+  <button mat-raised-button color="primary" (click)="navigateToHome()">
+    Back to Home
+  </button>
   <h2>Create Project</h2>
   <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="fill">

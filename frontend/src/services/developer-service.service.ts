@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Developer } from 'src/models/developer.model';
@@ -6,66 +7,41 @@ import { Developer } from 'src/models/developer.model';
   providedIn: 'root',
 })
 export class DeveloperServiceService {
-  private developers: Developer[] = [
-    {
-      id: 1,
-      emer: 'Desarda',
-      mbiemer: 'Mece',
-      email: 'desarda.mece@example.com',
-      experienceLevel: 'Senior',
-      skills: ['Frontend', 'Backend'],
-    },
-    {
-      id: 2,
-      emer: 'Ana',
-      mbiemer: 'Maria',
-      email: 'ana.maria@example.com',
-      experienceLevel: 'Junior',
-      skills: ['Frontend'],
-    },
-    {
-      id: 2,
-      emer: 'Ana',
-      mbiemer: 'Maria',
-      email: 'ana.maria@example.com',
-      experienceLevel: 'Junior',
-      skills: ['Frontend'],
-    },
-    {
-      id: 2,
-      emer: 'Ana',
-      mbiemer: 'Maria',
-      email: 'ana.maria@example.com',
-      experienceLevel: 'Junior',
-      skills: ['Frontend'],
-    },
-    {
-      id: 2,
-      emer: 'Ana',
-      mbiemer: 'Maria',
-      email: 'ana.maria@example.com',
-      experienceLevel: 'Junior',
-      skills: ['Frontend'],
-    },
-    {
-      id: 2,
-      emer: 'Ana',
-      mbiemer: 'Maria',
-      email: 'ana.maria@example.com',
-      experienceLevel: 'Junior',
-      skills: ['Frontend'],
-    },
-  ];
-
-  getDevelopers(): Observable<Developer[]> {
-    return of(this.developers);
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  };
+  constructor(private httpClient: HttpClient) {}
+  getAllDevelopers(): Observable<Developer[]> {
+    return this.httpClient.get<Developer[]>(
+      'http://localhost:8083/api/developers'
+    );
+  }
+  getDeveloper(id: number): Observable<Developer> {
+    return this.httpClient.get<Developer>(
+      'http://localhost:8083/api/developers/' + id
+    );
   }
 
-  deleteDeveloper(id: number): Observable<void> {
-    const index = this.developers.findIndex((dev) => dev.id === id);
-    if (index !== -1) {
-      this.developers.splice(index, 1);
-    }
-    return of(void 0);
+  deleteDeveloper(developer: Developer): Observable<Developer> {
+    return this.httpClient.delete<Developer>(
+      'http://localhost:8083/api/developers/' + developer.id,
+      this.httpOptions
+    );
+  }
+
+  createDeveloper(developer: Developer): Observable<Developer> {
+    return this.httpClient.post<Developer>(
+      'http://localhost:8083/api/developers',
+      developer,
+      this.httpOptions
+    );
+  }
+
+  updateDeveloper(developer: Developer): Observable<Developer> {
+    return this.httpClient.put<Developer>(
+      'http://localhost:8083/api/developers/' + developer.id,
+      developer,
+      this.httpOptions
+    );
   }
 }

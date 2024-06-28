@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-project',
@@ -11,7 +12,7 @@ export class CreateProjectComponent {
 
   industries = ['Finance', 'Telekom', 'Informatike', 'Others'];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.projectForm = this.fb.group({
@@ -26,9 +27,11 @@ export class CreateProjectComponent {
   onSubmit() {
     if (this.projectForm.valid) {
       console.log(this.projectForm.value);
-      // Perform your form submission logic here
     } else {
       console.log('Form is invalid');
     }
+  }
+  navigateToHome() {
+    this.router.navigate(['/admin']);
   }
 }

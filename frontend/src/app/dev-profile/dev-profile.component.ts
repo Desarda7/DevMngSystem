@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Developer } from 'src/models/developer.model';
+import { DeveloperServiceService } from 'src/services/developer-service.service';
 
 @Component({
   selector: 'app-dev-profile',
@@ -10,10 +13,14 @@ export class DevProfileComponent {
   devProfileForm: FormGroup;
   photo: File | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private developerService: DeveloperServiceService
+  ) {
     this.devProfileForm = this.fb.group({
-      emer: ['', Validators.required],
-      mbiemer: ['', Validators.required],
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       experienceLevel: ['', Validators.required],
       frontend: [false],
@@ -34,12 +41,29 @@ export class DevProfileComponent {
     }
   }
 
-  onSubmit() {
+  // onSubmit() {
+  //   if (this.devProfileForm.valid) {
+  //     console.log(this.devProfileForm.value);
+  //   } else {
+  //     console.log('Form is invalid');
+  //   }
+  // }
+  navigateToHome() {
+    this.router.navigate(['/admin']);
+  }
+  onSubmit(): void {
     if (this.devProfileForm.valid) {
-      console.log(this.devProfileForm.value);
-      // Perform your form submission logic here
-    } else {
-      console.log('Form is invalid');
+      const newDeveloper: Developer = this.devProfileForm.value;
+      this.developerService.createDeveloper(newDeveloper).subscribe(
+        (developer) => {
+          console.log('Developer added successfully', developer);
+          // Optionally reset the form or navigate away
+          this.devProfileForm.reset();
+        },
+        (error) => {
+          console.error('Error adding developer', error);
+        }
+      );
     }
   }
 }

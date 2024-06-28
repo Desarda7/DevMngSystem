@@ -1,11 +1,16 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogConfig,
+  MatDialogModule,
+} from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Developer } from 'src/models/developer.model';
 import { DeveloperServiceService } from 'src/services/developer-service.service';
 import { EditDeveloperDialogComponent } from '../edit-developer-dialog/edit-developer-dialog.component';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-devs',
@@ -62,7 +67,8 @@ export class ManageDevsComponent {
   constructor(
     private developerService: DeveloperServiceService,
     private cdr: ChangeDetectorRef,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -70,7 +76,7 @@ export class ManageDevsComponent {
   }
 
   loadDevelopers() {
-    this.developerService.getDevelopers().subscribe((developers) => {
+    this.developerService.getAllDevelopers().subscribe((developers) => {
       this.developers = developers;
       this.dataSource = new MatTableDataSource(this.developers);
       this.dataSource.paginator = this.paginator;
@@ -99,23 +105,28 @@ export class ManageDevsComponent {
   }
 
   deleteDeveloper(developer: Developer): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '400px',
-      data: {
-        title: 'Confirm Delete',
-        message: `Are you sure you want to delete ${developer.emer} ${developer.mbiemer}?`,
-      },
-    });
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      message: `Are you sure you want to delete developer ${developer.name} ${developer.surname}?`,
+    };
+
+    const dialogRef = this.dialog.open(
+      ConfirmationDialogComponent,
+      dialogConfig
+    );
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.developerService.deleteDeveloper(developer.id).subscribe(() => {
-          this.dataSource.data = this.dataSource.data.filter(
-            (dev) => dev.id !== developer.id
+        this.developerService.deleteDeveloper(developer).subscribe(() => {
+          this.developers = this.developers.filter(
+            (d) => d.id !== developer.id
           );
-          this.dataSource._updateChangeSubscription(); // Refresh dataSource
+          this.dataSource.data = this.developers;
         });
       }
     });
+  }
+  navigateToHome() {
+    this.router.navigate(['/admin']);
   }
 }

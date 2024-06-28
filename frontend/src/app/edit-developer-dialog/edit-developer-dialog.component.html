@@ -1,15 +1,38 @@
+<button mat-raised-button color="primary" (click)="navigateToHome()">
+  Back to Home
+</button>
 <h2 mat-dialog-title>Edit Developer</h2>
 <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <mat-form-field appearance="fill">
       <mat-label>Emer</mat-label>
-      <input matInput formControlName="emer" required />
-      <mat-error *ngIf="editForm.get('emer')?.hasError('required')"
+      <input matInput formControlName="name" required />
+      <mat-error *ngIf="editForm.get('name')?.hasError('required')"
         >Emer is required</mat-error
       >
     </mat-form-field>
-
-    <!-- Repeat for other fields (mbiemer, email, experienceLevel, skills) -->
+    <mat-form-field appearance="fill">
+      <mat-label>Mbiemer</mat-label>
+      <input matInput formControlName="surname" required />
+      <mat-error *ngIf="editForm.get('surname')?.hasError('required')"
+        >Mbiemer is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" required />
+      <mat-error *ngIf="editForm.get('email')?.hasError('required')"
+        >Email is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Experience Level</mat-label>
+      <mat-select formControlName="experienceLevel" required>
+        <mat-option value="junior">Junior</mat-option>
+        <mat-option value="intermediate">Intermediate</mat-option>
+        <mat-option value="senior">Senior</mat-option>
+      </mat-select>
+    </mat-form-field>
 
     <mat-checkbox formControlName="frontend">Frontend</mat-checkbox>
     <mat-checkbox formControlName="backend">Backend</mat-checkbox>

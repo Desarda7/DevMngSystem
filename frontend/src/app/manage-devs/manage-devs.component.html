@@ -1,3 +1,4 @@
+<button mat-raised-button color="primary">Back to Home</button>
 <div class="mat-elevation-z8">
   <mat-form-field appearance="fill">
     <input
@@ -9,12 +10,12 @@
   <table mat-table [dataSource]="developers" class="mat-elevation-z8">
     <ng-container matColumnDef="emer">
       <th mat-header-cell *matHeaderCellDef>Emer</th>
-      <td mat-cell *matCellDef="let developer">{{ developer.emer }}</td>
+      <td mat-cell *matCellDef="let developer">{{ developer.name }}</td>
     </ng-container>
 
     <ng-container matColumnDef="mbiemer">
       <th mat-header-cell *matHeaderCellDef>Mbiemer</th>
-      <td mat-cell *matCellDef="let developer">{{ developer.mbiemer }}</td>
+      <td mat-cell *matCellDef="let developer">{{ developer.surname }}</td>
     </ng-container>
 
     <ng-container matColumnDef="email">

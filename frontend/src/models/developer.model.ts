@@ -1,8 +1,10 @@
 export interface Developer {
   id: number;
-  emer: string;
-  mbiemer: string;
+  name: string;
+  surname: string;
   email: string;
   experienceLevel: string;
   skills: string[];
+  profilePicture: string;
+  projects: string[];
 }

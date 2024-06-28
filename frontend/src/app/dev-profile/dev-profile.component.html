@@ -1,3 +1,6 @@
+<button mat-raised-button color="primary" (click)="navigateToHome()">
+  Back to Home
+</button>
 <div class="dev-profile-container">
   <div class="dev-profile-form">
     <h2>Add a New Developer</h2>
@@ -11,8 +14,8 @@
     <form [formGroup]="devProfileForm" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="fill">
         <mat-label>Emer</mat-label>
-        <input matInput formControlName="emer" placeholder="Emer" required />
-        <mat-error *ngIf="devProfileForm.get('emer')?.hasError('required')">
+        <input matInput formControlName="name" placeholder="Emer" required />
+        <mat-error *ngIf="devProfileForm.get('name')?.hasError('required')">
           This field is required
         </mat-error>
       </mat-form-field>
@@ -21,11 +24,11 @@
         <mat-label>Mbiemer</mat-label>
         <input
           matInput
-          formControlName="mbiemer"
+          formControlName="surname"
           placeholder="Mbiemer"
           required
         />
-        <mat-error *ngIf="devProfileForm.get('mbiemer')?.hasError('required')">
+        <mat-error *ngIf="devProfileForm.get('surname')?.hasError('required')">
           This field is required
         </mat-error>
       </mat-form-field>

@@ -24,6 +24,7 @@ import { CreateProjectComponent } from './create-project/create-project.componen
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
